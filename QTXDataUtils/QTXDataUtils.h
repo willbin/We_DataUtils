@@ -7,8 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+//#import "NSDictionary+NullReplacement.h"
+//#import "NSArray+NullReplacement.h"
+
+
+// 本类是一些常见小功能的集合
+
+#define kBaseListCellHeight  (415+5+13)
 
 @interface QTXDataUtils : NSObject
+
+
+#pragma mark - MD5
+
++ (NSString *)MD5HashFromString:(NSString *)sorStr;
 
 #pragma mark -　日期相关
 // 根据日期返回NSDate对象(日期格式: 2014-01-02 03:22:10)
@@ -129,13 +142,6 @@
 + (UIImage *)imageWithImgFileName:(NSString *)imgName
                            ofType:(NSString *)typeStr;
 
-
-#pragma mark -  界面相关小功能
-
-+ (UIView *)getLineViewWithFrame:(CGRect)aFrame;
-+ (UIView *)getLineViewWithVerticalFrame:(CGRect)aFrame;
-
-
 #pragma mark - view转化为image
 
 + (UIImage *)captureScrollView:(UIScrollView *)scrollView;
@@ -155,6 +161,8 @@
 + (UIImage *)captureView:(UIImageView *)faceImageView andSubview:(UIView *)enclosingView;
 
 
-
+//#pragma mark - 处理数据
+//
+//+ (NSDictionary *)getProperDictWithData:(NSData *)jsonData;
 
 @end

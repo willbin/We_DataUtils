@@ -8,7 +8,26 @@
 
 #import "QTXDataUtils.h"
 
+#import <CommonCrypto/CommonDigest.h>
+
 @implementation QTXDataUtils
+
+#pragma mark - MD5
+
++ (NSString *)MD5HashFromString:(NSString *)sorStr
+{
+    if(sorStr.length == 0) {
+        return nil;
+    }
+    
+    const char *cStr = [sorStr UTF8String];
+    unsigned char result[16];
+    CC_MD5(cStr, (CC_LONG)strlen(cStr), result);
+    
+    return [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+            result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
+            result[8], result[9], result[10], result[11],result[12], result[13], result[14], result[15]];
+}
 
 #pragma mark - Date 相关
 
@@ -165,7 +184,7 @@
     
     switch (gapDay)
     {
-            case 0:
+        case 0:
         {
             BOOL idSameDay = [self isSameDay:date1 date2:date2];
             
@@ -177,10 +196,10 @@
             }
         }
             break;
-            case 1:
+        case 1:
             gapDays = 1;
             break;
-            case 2:
+        case 2:
             gapDays = 2;
             break;
         default:
@@ -202,19 +221,19 @@
     NSInteger gapDay = [self gapDayFromDate:destDate toDate:nowDate];
     switch (gapDay)
     {
-            case 0:
+        case 0:
         {
             // 今天
             timeStamp = [NSString stringWithFormat:@"今天 %@", timeStr];
         }
             break;
-            case 1:
+        case 1:
         {
             // 昨天
             timeStamp = [NSString stringWithFormat:@"昨天 %@", timeStr];
         }
             break;
-            case 2:
+        case 2:
         {
             // 前天
             timeStamp = [NSString stringWithFormat:@"前天 %@", timeStr];
@@ -336,37 +355,37 @@
     NSString *weekStr = @"";
     switch (weekIndex)
     {
-            case 1:
+        case 1:
         {
             weekStr = @"星期日";
         }
             break;
-            case 2:
+        case 2:
         {
             weekStr = @"星期一";
         }
             break;
-            case 3:
+        case 3:
         {
             weekStr = @"星期二";
         }
             break;
-            case 4:
+        case 4:
         {
             weekStr = @"星期三";
         }
             break;
-            case 5:
+        case 5:
         {
             weekStr = @"星期四";
         }
             break;
-            case 6:
+        case 6:
         {
             weekStr = @"星期五";
         }
             break;
-            case 7:
+        case 7:
         {
             weekStr = @"星期六";
         }
@@ -594,7 +613,7 @@
     }
     
     if(a==0 && l==0)
-    return 0;
+        return 0;
     
     int len = l+(int)ceilf((float)(a+b)/2.0);
     
@@ -634,17 +653,17 @@
     int genderInt = [sorStr intValue];
     switch (genderInt)
     {
-            case 0:
+        case 0:
         {
             displayStr = @"未知";
         }
             break;
-            case 1:
+        case 1:
         {
             displayStr = @"男";
         }
             break;
-            case 2:
+        case 2:
         {
             displayStr =  @"女";
         }
@@ -660,7 +679,7 @@
 {
     NSString *intStr = sorStr;
     
-    if ( [sorStr isEqualToString:_(@"")])
+    if ( [sorStr isEqualToString:@""])
     {
         intStr = @"0";
     }
@@ -780,38 +799,6 @@
     return myImage;
 }
 
-#pragma mark -  界面相关小功能
-
-+ (UIView *)getLineViewWithFrame:(CGRect)aFrame
-{
-    UIView *lineView = [[UIView alloc] initWithFrame:aFrame];
-    
-    UIView *l1View = [[UIView alloc] initWithFrame:CGRectMake(0, 0, lineView.frame.size.width, 0.5)];
-    l1View.backgroundColor = HEXCOLOR(0x2a2827);
-    [lineView addSubview:l1View];
-    
-    UIView *l2View = [[UIView alloc] initWithFrame:CGRectMake(0, 0.5, lineView.frame.size.width, 0.5)];
-    l2View.backgroundColor = HEXCOLOR(0x464545);
-    [lineView addSubview:l2View];
-    
-    return lineView;
-}
-
-+ (UIView *)getLineViewWithVerticalFrame:(CGRect)aFrame
-{
-    UIView *lineView = [[UIView alloc] initWithFrame:aFrame];
-    
-    UIView *l1View = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.5, lineView.frame.size.height)];
-    l1View.backgroundColor = HEXCOLOR(0x2a2827);
-    [lineView addSubview:l1View];
-    
-    UIView *l2View = [[UIView alloc] initWithFrame:CGRectMake(0.5, 0, 0.5, lineView.frame.size.height)];
-    l2View.backgroundColor = HEXCOLOR(0x464545);
-    [lineView addSubview:l2View];
-    
-    return lineView;
-}
-
 #pragma mark - view转化为image
 
 + (UIImage *)captureScrollView:(UIScrollView *)scrollView
@@ -925,5 +912,22 @@
     
     return img;
 }
+
+//#pragma mark - 处理数据
+//
+//+ (NSDictionary *)getProperDictWithData:(NSData *)jsonData
+//{
+//    if (![jsonData isKindOfClass:[NSData class]])
+//    {
+//        return nil;
+//    }
+//    
+//    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData
+//                                                             options:NSJSONReadingMutableLeaves
+//                                                               error:nil];
+//    NSDictionary *cleanDict = [jsonDict dictionaryByReplacingNullsWithBlanks];
+//    
+//    return cleanDict;
+//}
 
 @end
