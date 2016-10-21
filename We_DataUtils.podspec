@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "We_DataUtils"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Test summary"
   s.description  = <<-DESC
                   这里测试信息, 应该要比summary长一些, 这样差不多了.
