@@ -11,7 +11,7 @@
 //#import "NSDictionary+NullReplacement.h"
 //#import "NSArray+NullReplacement.h"
 
-
+// 0.0.2
 // 本类是一些常见小功能的集合
 
 #define kBaseListCellHeight  (415+5+13)
