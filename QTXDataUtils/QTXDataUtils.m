@@ -434,8 +434,8 @@
     
     // 日期
     NSString *dateStr = [NSString stringWithFormat:@"%02ld月%02ld日",
-                         aComponents.month,
-                         aComponents.day];
+                         (long)aComponents.month,
+                         (long)aComponents.day];
     
     NSString *dstStr = [NSString stringWithFormat:@"%@ %@", dayStr, dateStr];
     return  dstStr;
@@ -469,8 +469,8 @@
     NSDateComponents *aComponents = [calendar components:unitFlags fromDate:dstDate];
     // 日期
     NSString *dateStr = [NSString stringWithFormat:@"%02ld月%02ld日",
-                         aComponents.month,
-                         aComponents.day];
+                         (long)aComponents.month,
+                         (long)aComponents.day];
     
     return  dateStr;
 }
@@ -485,10 +485,10 @@
     unsigned unitFlags = NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
     NSDateComponents *aComponents = [calendar components:unitFlags fromDate:dstDate];
     NSString *dateStr = [NSString stringWithFormat:@"%02ld:%02ld %02ld-%02ld",
-                         aComponents.month,
-                         aComponents.day,
-                         aComponents.hour,
-                         aComponents.minute
+                         (long)aComponents.month,
+                         (long)aComponents.day,
+                         (long)aComponents.hour,
+                         (long)aComponents.minute
                          ];
     return  dateStr;
 }
@@ -503,10 +503,10 @@
     unsigned unitFlags = NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute;
     NSDateComponents *aComponents = [calendar components:unitFlags fromDate:dstDate];
     NSString *dateStr = [NSString stringWithFormat:@"%02ld.%02ld %02ld:%02ld",
-                         aComponents.month,
-                         aComponents.day,
-                         aComponents.hour,
-                         aComponents.minute
+                         (long)aComponents.month,
+                         (long)aComponents.day,
+                         (long)aComponents.hour,
+                         (long)aComponents.minute
                          ];
     return  dateStr;
 }
@@ -546,8 +546,8 @@
     }
     
     NSString *dateStr = [NSString stringWithFormat:@"%02ld月%02ld日 %@",
-                         aComponents.month,
-                         aComponents.day,
+                         (long)aComponents.month,
+                         (long)aComponents.day,
                          weekStr
                          ];
     return  dateStr;
